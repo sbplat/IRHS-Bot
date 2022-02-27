@@ -1,4 +1,3 @@
-const discord = require("discord.js");
 const { checkPerms } = require("../../util/checks.js");
 
 module.exports = {
@@ -36,13 +35,13 @@ module.exports = {
         }
 
         // check permissions
-        if (!checkPerms(client, command, message.author)) {
+        if (!checkPerms(client, command, message.member, message.guild)) {
             return message.channel.send("You do not have permission to execute this command!");
         }
 
         // execute the command
         try {
-            command.run(client, message, args);
+            await command.run(client, message, args);
         } catch (err) {
             console.log(err);
             message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);

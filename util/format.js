@@ -1,5 +1,3 @@
-const discord = require("discord.js");
-
 module.exports.formatUsage = (client, command) => {
     return `${client.prefix}${command.name}${command.usage ? " " + command.usage : ""}`
 }

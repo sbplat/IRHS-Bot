@@ -18,5 +18,5 @@ module.exports.inputError = async (client, cmdName, user, channel, errorMessage)
         )
         .setTimestamp()
         .setFooter({text: `${user.tag}`, iconURL: user.displayAvatarURL()});
-    channel.send({content: `${user}`, embeds: [embed]});
+    return await channel.send({content: `${user}`, embeds: [embed]});
 }

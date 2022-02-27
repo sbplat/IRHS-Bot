@@ -2,7 +2,7 @@ const { promisify } = require("util");
 const { glob } = require("glob");
 const asyncGlob = promisify(glob);
 
-module.exports = async(client) => {
+module.exports = async (client) => {
     (await asyncGlob(`${process.cwd()}/commands/**/*.js`)).map(async (file) => {
         const command = require(file);
 

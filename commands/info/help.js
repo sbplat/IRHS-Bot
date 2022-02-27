@@ -56,7 +56,7 @@ module.exports = {
 
                 let commandsInfo = [];
                 client.commands.forEach((command) => {
-                    if (command.category == query && checkPerms(client, command, message.author)) {
+                    if (command.category == query && checkPerms(client, command, message.member, message.guild)) {
                         commandsInfo.push([command.name, command.description]);
                     }
                 });
@@ -87,7 +87,7 @@ module.exports = {
             } else {
                 const command = client.commands.get(query) || client.commands.get(client.aliases.get(query));
 
-                if (command) {
+                if (command && checkPerms(client, command, message.member, message.guild)) {
                     // specific command help page
 
                     let embed = new discord.MessageEmbed()

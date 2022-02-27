@@ -14,12 +14,13 @@ client.aliases = new Collection();
 client.events = new Collection();
 client.prefix = "-";
 client.owners = [396479397537906689];
+//client.owners = [];
 
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
 
-["command", "event"].forEach((handler) => {
-    require(`./handlers/${handler}`)(client);
+["command", "event"].forEach(async (handler) => {
+    await require(`./handlers/${handler}`)(client);
 })
 
 client.login(TOKEN).then(() => {

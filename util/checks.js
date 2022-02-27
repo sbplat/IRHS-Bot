@@ -1,5 +1,13 @@
-const discord = require("discord.js");
+module.exports.checkPerms = (client, command, user, guild) => {
+    if (client.owners.some((id) => id == user.id)) {
+        return true;
+    }
 
-module.exports.checkPerms = async (client, command, user) => {
-    return client.owners.some((id) => id == user.id) || (!command.ownerOnly && command.enabled && user.permissions.has(command.requiredPerms || []));
+    if (!command.ownerOnly && command.enabled) {
+        if (!command.guildOnly || (guild && user.permissions.has(command.requiredPerms || []))) {
+            return true;
+        }
+    }
+
+    return false;
 }
