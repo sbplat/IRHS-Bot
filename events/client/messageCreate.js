@@ -1,3 +1,6 @@
+const discord = require("discord.js");
+const { checkPerms } = require("../../util/checks.js");
+
 module.exports = {
     name: "messageCreate",
     async execute(client, message) {
@@ -28,18 +31,12 @@ module.exports = {
             return message.channel.send("This command is disabled.");
         }
 
-        // check permissions
-
-        if (command.ownerOnly && !client.owners.some((id) => id == message.author.id)) {
-            // owner only, don't send anything
-            return;
-        }
-
         if (!message.guild && command.guildOnly) {
             return message.channel.send("This command can only be used in servers.");
         }
 
-        if (!message.member.permissions.has(command.requiredPerms || [])) {
+        // check permissions
+        if (!checkPerms(client, command, message.author)) {
             return message.channel.send("You do not have permission to execute this command!");
         }
 
