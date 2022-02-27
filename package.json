@@ -1,0 +1,27 @@
+{
+  "name": "irhs-bot",
+  "version": "1.0.0",
+  "description": "irhs discord bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbplat/IRHS-Bot.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "sbplat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sbplat/IRHS-Bot/issues"
+  },
+  "homepage": "https://github.com/sbplat/IRHS-Bot#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "glob": "^7.2.0"
+  }
+}

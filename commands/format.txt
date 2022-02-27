@@ -1,0 +1,16 @@
+const discord = require("discord.js");
+
+module.exports = {
+    name: "name",
+    aliases: [],
+    category: "category",
+    description: "description",
+    usage: "[argument 1] [argument 2 (optional)]",
+    enabled: true,
+    ownerOnly: false,
+    guildOnly: true,
+    requiredPerms: [],
+    run: async (client, message, args) => {
+        // command body
+    }
+}
