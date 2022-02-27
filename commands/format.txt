@@ -6,6 +6,7 @@ module.exports = {
     category: "category",
     description: "description",
     usage: "[argument 1] [argument 2 (optional)]",
+    example: "name",
     enabled: true,
     ownerOnly: false,
     guildOnly: true,

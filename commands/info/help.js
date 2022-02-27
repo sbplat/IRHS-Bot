@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const { checkPerms } = require("../../util/checks.js");
 const { inputError } = require("../../util/errors.js");
-const { formatUsage, insertZeroWidth, titleCase } = require("../../util/format.js");
+const { formatUsage, formatExample, insertZeroWidth, titleCase } = require("../../util/format.js");
 
 const MAX_COMMANDS_PER_PAGE = 7;
 
@@ -11,6 +11,7 @@ module.exports = {
     category: "info",
     description: "Bot commands",
     usage: "[category/command (optional)] [page # (optional)]",
+    example: "ping",
     enabled: true,
     run: async (client, message, args) => {
         let page = 1, query = "";
@@ -40,7 +41,7 @@ module.exports = {
                 .addField("Club", "Programming club", true)
                 .addField("Info", "General information", true)
                 .addField("Moderation", "Moderation tools", true)
-                .addField("Util", "Random utilities", true)
+                .addField("Utility", "Random utilities", true)
                 .setTimestamp()
                 .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
 
@@ -99,6 +100,7 @@ module.exports = {
                             `Category: ${titleCase(command.category)}\n` +
                             `Description: ${command.description}\n` +
                             `Usage: \`${formatUsage(client, command)}\`\n` +
+                            `Example: \`${formatExample(client, command)}\`\n` +
                             `Guild Only: ${(new Boolean(command.guildOnly)).toString()}`
                         )
                         .setTimestamp()
