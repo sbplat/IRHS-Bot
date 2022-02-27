@@ -1,3 +1,4 @@
+// require("./util/keep-alive.js")();
 const { Client, Collection } = require("discord.js");
 require("dotenv").config();
 const TOKEN = process.env.TOKEN;
