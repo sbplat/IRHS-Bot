@@ -15,16 +15,16 @@ module.exports = {
             .addField("Bot Latency", `???ms`, true)
             .addField("API Latency", `???ms`, true);
 
-        return message.channel.send({embeds: [embed]}).then(async (msg) => {
-            let latency = Date.now() - start;
+        const msg = await message.channel.send({embeds: [embed]})
 
-            let embed1 = new discord.MessageEmbed()
-                .setColor("RANDOM")
-                .setTitle("Pong!")
-                .addField("Bot Latency", `${latency}ms`, true)
-                .addField("API Latency", `${Math.round(client.ws.ping)}ms`, true);
+        let latency = Date.now() - start;
 
-            return await msg.edit({embeds: [embed1]});
-        });
+        let embed1 = new discord.MessageEmbed()
+            .setColor("RANDOM")
+            .setTitle("Pong!")
+            .addField("Bot Latency", `${latency}ms`, true)
+            .addField("API Latency", `${Math.round(client.ws.ping)}ms`, true);
+
+        return await msg.edit({embeds: [embed1]});
     }
 }

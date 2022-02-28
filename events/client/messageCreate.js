@@ -9,7 +9,7 @@ module.exports = {
 
         // bot mentioned exactly
         if (message.content == `<@!${client.user.id}>` || message.content == `<@${client.user.id}>`) {
-            return message.channel.send(`${message.author}, my prefix is \`${client.prefix}\``);
+            return await message.channel.send(`${message.author}, my prefix is \`${client.prefix}\``);
         }
 
         // ignore messages that don't start with the bot prefix or bot mention
@@ -27,16 +27,16 @@ module.exports = {
         }
 
         if (!command.enabled) {
-            return message.channel.send("This command is disabled.");
+            return await message.channel.send("This command is disabled.");
         }
 
         if (!message.guild && command.guildOnly) {
-            return message.channel.send("This command can only be used in servers.");
+            return await message.channel.send("This command can only be used in servers.");
         }
 
         // check permissions
         if (!checkPerms(client, command, message.member, message.guild)) {
-            return message.channel.send("You do not have permission to execute this command!");
+            return await message.channel.send("You do not have permission to execute this command!");
         }
 
         // execute the command
@@ -44,7 +44,7 @@ module.exports = {
             await command.run(client, message, args);
         } catch (err) {
             console.log(err);
-            message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);
+            return await message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);
         }
     }
 }
