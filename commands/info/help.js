@@ -17,13 +17,13 @@ module.exports = {
         let page = 1, query = "";
         // query is greedy because it's a string
         // try to parse the page # first
-        if (args[0] != undefined && args[1] != undefined) {
+        if (args[0] && args[1]) {
             page = parseInt(args[1]);
             if (isNaN(page)) {
                 page = 1;
             }
             query = args[0];
-        } else if (args[0] != undefined) {
+        } else if (args[0]) {
             page = parseInt(args[0]);
             if (isNaN(page)) {
                 page = 1;
