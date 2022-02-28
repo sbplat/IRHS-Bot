@@ -64,7 +64,7 @@ module.exports = {
 
                 commandsInfo.sort();
 
-                const maxPages = Math.max(Math.ceil(commandsInfo.size / MAX_COMMANDS_PER_PAGE), 1);
+                const maxPages = Math.max(Math.ceil(commandsInfo.length / MAX_COMMANDS_PER_PAGE), 1);
 
                 if (page > maxPages) {
                     return await inputError(client, "help", message.author, message.channel, `${insertZeroWidth(page)} aka [page #] must be at most ${maxPages}`);
@@ -74,7 +74,7 @@ module.exports = {
                     .setColor("GREEN")
                     .setTitle(`${titleCase(query)} Category`)
                     .setTimestamp()
-                    .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+                    .setFooter({text: `${message.author.tag} | Page ${page}/${maxPages}`, iconURL: message.author.displayAvatarURL()});
 
                 let description = `Run \`${client.prefix}help command\` to view the detailed help message for that command\n\n`;
                 for (let i = (page - 1) * MAX_COMMANDS_PER_PAGE; i < Math.min(page * MAX_COMMANDS_PER_PAGE, commandsInfo.length); ++i) {
