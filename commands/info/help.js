@@ -17,10 +17,13 @@ module.exports = {
         let page = 1, query = "";
         // query is greedy because it's a string
         // try to parse the page # first
-        if (args[0] && args[1]) {
-            page = parseInt(args[1]) || 1;
+        if (args[0] != undefined && args[1] != undefined) {
+            page = parseInt(args[1]);
+            if (isNaN(page)) {
+                page = 1;
+            }
             query = args[0];
-        } else if (args[0]) {
+        } else if (args[0] != undefined) {
             page = parseInt(args[0]);
             if (isNaN(page)) {
                 page = 1;
@@ -64,7 +67,7 @@ module.exports = {
 
                 commandsInfo.sort();
 
-                const maxPages = Math.max(Math.ceil(commandsInfo.length / MAX_COMMANDS_PER_PAGE), 1);
+                const maxPages = Math.ceil(commandsInfo.length / MAX_COMMANDS_PER_PAGE);
 
                 if (page > maxPages) {
                     return await inputError(client, "help", message.author, message.channel, `${insertZeroWidth(page)} aka [page #] must be at most ${maxPages}`);
