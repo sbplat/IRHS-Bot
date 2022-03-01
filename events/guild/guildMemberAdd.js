@@ -11,7 +11,7 @@ module.exports = {
             .setFooter({text: `${member.user.tag}`, iconURL: member.user.displayAvatarURL()});
         await member.guild.systemChannel.send({embeds: [embed]});
 
-        const coderRole = member.guild.roles.cache.find((role) => role.name == "Coder");
+        const coderRole = member.guild.roles.cache.find((role) => role.name === "Coder");
         return await member.roles.add(coderRole, "New member joined");
     }
-}
+};

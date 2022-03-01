@@ -20,4 +20,4 @@ module.exports = async (client) => {
     });
 
     console.log("Loaded events handler");
-}
+};

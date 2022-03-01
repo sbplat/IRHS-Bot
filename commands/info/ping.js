@@ -15,7 +15,7 @@ module.exports = {
             .addField("Bot Latency", `???ms`, true)
             .addField("API Latency", `???ms`, true);
 
-        const msg = await message.channel.send({embeds: [embed]})
+        const msg = await message.channel.send({embeds: [embed]});
 
         let latency = Date.now() - start;
 
@@ -27,4 +27,4 @@ module.exports = {
 
         return await msg.edit({embeds: [embed1]});
     }
-}
+};

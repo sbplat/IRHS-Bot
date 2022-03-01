@@ -33,4 +33,4 @@ module.exports = async (client) => {
     });
 
     console.log("Loaded commands handler");
-}
+};

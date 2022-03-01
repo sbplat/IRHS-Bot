@@ -1,5 +1,5 @@
 module.exports.checkPerms = (client, command, user, guild) => {
-    if (client.owners.some((id) => id == user.id)) {
+    if (client.owners.some((id) => id === user.id)) {
         return true;
     }
 
@@ -10,4 +10,4 @@ module.exports.checkPerms = (client, command, user, guild) => {
     }
 
     return false;
-}
+};

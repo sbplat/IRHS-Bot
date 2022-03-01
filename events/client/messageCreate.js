@@ -8,7 +8,7 @@ module.exports = {
         }
 
         // bot mentioned exactly
-        if (message.content == `<@!${client.user.id}>` || message.content == `<@${client.user.id}>`) {
+        if (message.content === `<@!${client.user.id}>` || message.content === `<@${client.user.id}>`) {
             return await message.channel.send(`${message.author}, my prefix is \`${client.prefix}\``);
         }
 
@@ -47,4 +47,4 @@ module.exports = {
             return await message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);
         }
     }
-}
+};

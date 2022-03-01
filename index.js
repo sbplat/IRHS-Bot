@@ -21,7 +21,7 @@ client.on("error", console.error);
 
 ["command", "event"].forEach(async (handler) => {
     await require(`./handlers/${handler}`)(client);
-})
+});
 
 client.login(TOKEN).then(() => {
     console.log("Successfully logged in!");

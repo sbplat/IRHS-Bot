@@ -33,7 +33,7 @@ module.exports = {
 
         query = query.toLowerCase();
 
-        if (query.length == 0) {
+        if (query.length === 0) {
             // main help page
             // list all categories
 
@@ -60,7 +60,7 @@ module.exports = {
 
                 let commandsInfo = [];
                 client.commands.forEach((command) => {
-                    if (command.category == query && checkPerms(client, command, message.member, message.guild)) {
+                    if (command.category === query && checkPerms(client, command, message.member, message.guild)) {
                         commandsInfo.push([command.name, command.description]);
                     }
                 });
@@ -81,7 +81,7 @@ module.exports = {
 
                 let description = `Run \`${client.prefix}help command\` to view the detailed help message for that command\n\n`;
                 for (let i = (page - 1) * MAX_COMMANDS_PER_PAGE; i < Math.min(page * MAX_COMMANDS_PER_PAGE, commandsInfo.length); ++i) {
-                    description += `**${titleCase(commandsInfo[i][0])}**\n${commandsInfo[i][1]}\n\n`
+                    description += `**${titleCase(commandsInfo[i][0])}**\n${commandsInfo[i][1]}\n\n`;
                 }
 
                 embed.setDescription(description);
@@ -117,4 +117,4 @@ module.exports = {
             }
         }
     }
-}
+};

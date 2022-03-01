@@ -14,4 +14,4 @@ module.exports = {
     run: async (client, message, args) => {
         // command body
     }
-}
+};

@@ -54,4 +54,4 @@ module.exports = {
             .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
         return await message.channel.send({embeds: [embed]});
     }
-}
+};
