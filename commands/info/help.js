@@ -1,7 +1,7 @@
 const discord = require("discord.js");
 const { checkPerms } = require("../../util/checks.js");
 const { inputError } = require("../../util/errors.js");
-const { formatUsage, formatExample, insertZeroWidth, titleCase } = require("../../util/format.js");
+const { argsInfo, formatUsage, formatExample, insertZeroWidth, titleCase } = require("../../util/format.js");
 
 const MAX_COMMANDS_PER_PAGE = 7;
 
@@ -10,7 +10,7 @@ module.exports = {
     aliases: ["h", "commands", "cmds", "list"],
     category: "info",
     description: "Bot commands",
-    usage: "[category/command (optional)] [page # (optional)]",
+    usage: "[category/command] [page #]",
     example: "ping",
     enabled: true,
     run: async (client, message, args) => {
@@ -102,7 +102,7 @@ module.exports = {
                             `Aliases: ${command.aliases.join(", ") || "none"}\n` +
                             `Category: ${titleCase(command.category)}\n` +
                             `Description: ${command.description}\n` +
-                            `Usage: \`${formatUsage(client, command)}\`\n` +
+                            `Usage: \`${formatUsage(client, command)}\` (${argsInfo})\n` +
                             `Example: \`${formatExample(client, command)}\`\n` +
                             `Guild Only: ${(new Boolean(command.guildOnly)).toString()}`
                         )

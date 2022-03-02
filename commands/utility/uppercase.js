@@ -5,7 +5,7 @@ module.exports = {
     aliases: ["upper", "toupper", "touppercase"],
     category: "utility",
     description: "Converts a string to uppercase letters",
-    usage: "[string]",
+    usage: "<string>",
     example: "abcdefg hijklmnop qrstuv wxyz",
     enabled: true,
     run: async (client, message, args) => {

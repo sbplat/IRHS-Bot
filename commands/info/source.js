@@ -8,14 +8,18 @@ module.exports = {
     aliases: ["src", "sourcecode", "inspect"],
     category: "info",
     description: "View a command's source code",
-    usage: "[command]",
+    usage: "<command>",
     example: "source",
     enabled: true,
     run: async (client, message, args) => {
+        if (!args[0]) {
+            return await inputError(client, "source", message.author, message.channel, `<command> is required`);
+        }
+
         const command = client.commands.get(args[0]) || client.commands.get(client.aliases.get(args[0]));
 
         if (!command) {
-            return await inputError(client, "source", message.author, message.channel, `${insertZeroWidth(args[0])} aka [command] is not a valid command`);
+            return await inputError(client, "source", message.author, message.channel, `${insertZeroWidth(args[0])} aka <command> is not a valid command`);
         }
 
         const title = `Source code for \`${command.name}\``;

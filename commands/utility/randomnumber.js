@@ -7,18 +7,18 @@ module.exports = {
     aliases: ["rand", "random", "randnum"],
     category: "utility",
     description: "Get a random integer in a range (both inclusive)",
-    usage: "[lower bound] [upper bound]",
+    usage: "<lower bound> <upper bound>",
     example: "1 6",
     enabled: true,
     run: async (client, message, args) => {
         let lowerbound = parseInt(args[0]), upperbound = parseInt(args[1]);
 
         if (isNaN(lowerbound)) {
-            return await inputError(client, "randomnumber", message.author, message.channel, `${insertZeroWidth(args[0])} aka [lower bound] is an invalid integer`);
+            return await inputError(client, "randomnumber", message.author, message.channel, `${insertZeroWidth(args[0])} aka <lower bound> is an invalid integer`);
         }
 
         if (isNaN(upperbound)) {
-            return await inputError(client, "randomnumber", message.author, message.channel, `${insertZeroWidth(args[1])} aka [upper bound] is an invalid integer`);
+            return await inputError(client, "randomnumber", message.author, message.channel, `${insertZeroWidth(args[1])} aka <upper bound> is an invalid integer`);
         }
 
         let embed = new discord.MessageEmbed()

@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const { formatUsage } = require("./format.js");
+const { argsInfo, formatUsage } = require("./format.js");
 
 module.exports.inputError = async (client, cmdName, user, channel, errorMessage) => {
     const command = client.commands.get(cmdName) || client.commands.get(client.aliases.get(cmdName));
@@ -13,7 +13,7 @@ module.exports.inputError = async (client, cmdName, user, channel, errorMessage)
         .setTitle("Invalid Input!")
         .setDescription(
             `Invalid input from executing the ${command.name} command!\n` +
-            `Usage: \`${formatUsage(client, command)}\`\n\n` +
+            `Usage: \`${formatUsage(client, command)}\` (${argsInfo})\n\n` +
             `\`\`\`ERROR: ${errorMessage}!\`\`\``
         )
         .setTimestamp()

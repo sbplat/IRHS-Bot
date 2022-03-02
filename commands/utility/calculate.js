@@ -8,7 +8,7 @@ module.exports = {
     aliases: ["calc", "solve", "math"],
     category: "utility",
     description: "Evaluate math equations/problems",
-    usage: "[expression]",
+    usage: "<expression>",
     example: "[1+1, sqrt(-2)+5x10]",
     enabled: true,
     run: async (client, message, args) => {
@@ -43,7 +43,7 @@ module.exports = {
         }
 
         if (hasError) {
-            return await inputError(client, "calculate", message.author, message.channel, `${insertZeroWidth(expression)} aka [expression] is an invalid expression`);
+            return await inputError(client, "calculate", message.author, message.channel, `${insertZeroWidth(expression)} aka <expression> is an invalid expression`);
         }
 
         let embed = new discord.MessageEmbed()

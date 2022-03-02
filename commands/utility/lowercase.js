@@ -5,7 +5,7 @@ module.exports = {
     aliases: ["lower", "tolower", "tolowercase"],
     category: "utility",
     description: "Converts a string to lowercase letters",
-    usage: "[string]",
+    usage: "<string>",
     example: "abcdefg hijklmnop qrstuv wxyz",
     enabled: true,
     run: async (client, message, args) => {
