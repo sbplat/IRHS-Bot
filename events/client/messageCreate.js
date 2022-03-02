@@ -43,7 +43,7 @@ module.exports = {
         try {
             await command.run(client, message, args);
         } catch (err) {
-            console.log(err);
+            console.error(`Error executing ${cmdName}. (${message.content})\n`, err);
             return await message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);
         }
     }

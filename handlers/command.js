@@ -3,21 +3,22 @@ const { glob } = require("glob");
 const asyncGlob = promisify(glob);
 
 module.exports = async (client) => {
+    let msg = "Loading commands...\n";
     (await asyncGlob(`${process.cwd()}/commands/**/*.js`)).map(async (file) => {
         const command = require(file);
 
         const relPath = file.slice(process.cwd().length + "/commands/".length);
 
         if (!command.name) {
-            return console.log(`${relPath} missing name`);
+            return msg += `  ${relPath} missing name\n`;
         }
 
         if (!command.category) {
-            return console.log(`${relPath} missing category`);
+            return msg += `  ${relPath} missing category\n`;
         }
 
         if (!command.description) {
-            return console.log(`${relPath} missing description`);
+            return msg += `  ${relPath} missing description\n`;
         }
 
         client.commands.set(command.name, command);
@@ -29,8 +30,9 @@ module.exports = async (client) => {
             });
         }
 
-        return console.log(`${relPath} loaded`);
+        return msg += `  ${relPath} loaded\n`;
     });
 
-    console.log("Loaded commands handler");
+    msg += "Loaded commands handler";
+    console.log(msg);
 };
