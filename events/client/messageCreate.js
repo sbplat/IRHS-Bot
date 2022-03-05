@@ -1,4 +1,4 @@
-const { checkPerms } = require("../../util/checks.js");
+const { isOwner, checkPerms } = require("../../util/checks.js");
 
 module.exports = {
     name: "messageCreate",
@@ -35,7 +35,7 @@ module.exports = {
         }
 
         // check permissions
-        if (!checkPerms(client, command, message.member, message.guild)) {
+        if (!isOwner(client, message.author.id) && message.guild && !checkPerms(client, command, message.member, message.guild)) {
             return await message.channel.send("You do not have permission to execute this command!");
         }
 

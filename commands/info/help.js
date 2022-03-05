@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const { checkPerms } = require("../../util/checks.js");
+const { isOwner, checkPerms } = require("../../util/checks.js");
 const { inputError } = require("../../util/errors.js");
 const { argsInfo, formatUsage, formatExample, insertZeroWidth, titleCase } = require("../../util/format.js");
 
@@ -60,7 +60,7 @@ module.exports = {
 
                 let commandsInfo = [];
                 client.commands.forEach((command) => {
-                    if (command.category === query && checkPerms(client, command, message.member, message.guild)) {
+                    if (command.category === query && (!command.guildOnly || isOwner(client, message.author.id) || message.guild && checkPerms(client, command, message.member, message.guild))) {
                         commandsInfo.push([command.name, command.description]);
                     }
                 });
@@ -91,7 +91,7 @@ module.exports = {
             } else {
                 const command = client.commands.get(query) || client.commands.get(client.aliases.get(query));
 
-                if (command && checkPerms(client, command, message.member, message.guild)) {
+                if (command && (!command.guildOnly || isOwner(client, message.author.id) || message.guild && checkPerms(client, command, message.member, message.guild))) {
                     // specific command help page
 
                     let embed = new discord.MessageEmbed()

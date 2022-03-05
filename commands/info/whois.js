@@ -14,7 +14,7 @@ module.exports = {
     enabled: true,
     guildOnly: true,
     run: async (client, message, args) => {
-        let user = await getUserFromString(client, args[0]);
+        let user = await getUserFromString(client, args.join(" "));
         user = user ? await getMemberFromUser(user, message.guild) : message.member;
 
         let rolesCount = 0, roles = [];
