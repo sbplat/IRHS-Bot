@@ -3,7 +3,7 @@ module.exports.isOwner = isOwner;
 
 module.exports.checkPerms = (client, command, user, guild) => {
     if (!command.ownerOnly && command.enabled) {
-        if (!command.guildOnly || (guild && user.permissions.has(command.requiredPerms || []))) {
+        if (!command.guildOnly || (guild && user.permissions.has(command.requiredPerms))) {
             return true;
         }
     }

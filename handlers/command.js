@@ -1,3 +1,4 @@
+const discord = require("discord.js");
 const { promisify } = require("util");
 const { glob } = require("glob");
 const asyncGlob = promisify(glob);
@@ -29,6 +30,8 @@ module.exports = async (client) => {
                 client.aliases.set(alias, command.name);
             });
         }
+
+        command.requiredPerms = new discord.Permissions(command.requiredPerms || []);
 
         return msg += `  ${relPath} loaded\n`;
     });

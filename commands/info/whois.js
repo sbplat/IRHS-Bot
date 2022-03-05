@@ -11,8 +11,8 @@ module.exports = {
     description: "Information about a user (or yourself)",
     usage: "[user]",
     example: "939234240137158656",
-    enabled: true,
     guildOnly: true,
+    enabled: true,
     run: async (client, message, args) => {
         let user = await getUserFromString(client, args.join(" "));
         user = user ? await getMemberFromUser(user, message.guild) : message.member;

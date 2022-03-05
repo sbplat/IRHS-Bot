@@ -34,4 +34,4 @@ module.exports.getMemberFromUser = async (user, guild) => {
     } catch (err) {
         return undefined;
     }
-}
+};

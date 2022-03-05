@@ -7,10 +7,10 @@ module.exports = {
     description: "description",
     usage: "[argument 1] [argument 2 (optional)]",
     example: "name",
-    enabled: true,
     ownerOnly: false,
     guildOnly: true,
     requiredPerms: [],
+    enabled: true,
     run: async (client, message, args) => {
         // command body
     }
