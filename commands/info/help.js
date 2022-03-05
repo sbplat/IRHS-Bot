@@ -60,7 +60,7 @@ module.exports = {
 
                 let commandsInfo = [];
                 client.commands.forEach((command) => {
-                    if (command.category === query && (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))) {
+                    if (command.category === query /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/) {
                         commandsInfo.push([command.name, command.description]);
                     }
                 });
@@ -91,7 +91,7 @@ module.exports = {
             } else {
                 const command = client.commands.get(query) || client.commands.get(client.aliases.get(query));
 
-                if (command && (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))) {
+                if (command /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/) {
                     // specific command help page
 
                     let embed = new discord.MessageEmbed()

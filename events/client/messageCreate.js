@@ -1,4 +1,5 @@
 const { isOwner, checkPerms } = require("../../util/checks.js");
+const { logError } = require("../../util/loggers.js");
 
 module.exports = {
     name: "messageCreate",
@@ -52,6 +53,7 @@ module.exports = {
             await command.run(client, message, args);
         } catch (err) {
             console.error(`Error executing ${cmdName}. (${message.content})\n`, err);
+            await logError(client, err, command, message);
             return await message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);
         }
     }
