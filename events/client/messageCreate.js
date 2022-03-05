@@ -1,3 +1,4 @@
+const { codeBlock } = require("@discordjs/builders");
 const { isOwner, checkPerms } = require("../../util/checks.js");
 const { logError } = require("../../util/loggers.js");
 
@@ -54,7 +55,7 @@ module.exports = {
         } catch (err) {
             console.error(`Error executing ${cmdName}. (${message.content})\n`, err);
             await logError(client, err, command, message);
-            return await message.channel.send(`There was an error executing that command.\n\`\`\`${err.message}\`\`\``);
+            return await message.channel.send(`There was an error executing that command.\n${codeBlock(err.message)}`);
         }
     }
 };

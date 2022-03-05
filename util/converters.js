@@ -1,5 +1,6 @@
 const ID_REGEX = new RegExp("^([0-9]{15,20})$"),
-      MENTION_REGEX = new RegExp("^<@!?([0-9]{15,20})>$");
+      MENTION_REGEX = new RegExp("^<@!?([0-9]{15,20})>$")/*,
+      TAG_REGEX = new RegExp("^(.+#[0-9]{4})$")*/;
 
 module.exports.getUserFromString = async (client, string) => {
     if (!string) {
