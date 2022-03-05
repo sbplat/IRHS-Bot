@@ -7,6 +7,14 @@ module.exports = {
             return;
         }
 
+        if (message.channel.partial) {
+            await message.channel.fetch();
+        }
+
+        if (message.partial) {
+            await message.fetch();
+        }
+
         // bot mentioned exactly
         if (message.content === `<@!${client.user.id}>` || message.content === `<@${client.user.id}>`) {
             return await message.channel.send(`${message.author}, my prefix is \`${client.prefix}\``);

@@ -5,7 +5,7 @@ const TOKEN = process.env.TOKEN;
 
 const client = new Client({
     intents: 32767,
-    partials: ["CHANNEL"]
+    partials: ["MESSAGE", "CHANNEL"]
 });
 
 client.categories = new Set();
