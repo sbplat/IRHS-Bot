@@ -43,12 +43,19 @@ module.exports = {
 
         } else {
             const role = message.member.guild.roles.cache.find((role) => role.name === category);
-            await message.member.roles.add(role, "Self role");
+            let addedRole = false;
+
+            if (message.member.roles.cache.some((r) => r.id === role.id)) {
+                await message.member.roles.remove(role, "Self role");
+            } else {
+                await message.member.roles.add(role, "Self role");
+                addedRole = true;
+            }
 
             let embed = new discord.MessageEmbed()
                 .setColor("GREEN")
                 .setTitle(`Role added!`)
-                .setDescription(`Gave you the ${role} role!`)
+                .setDescription(`${addedRole ? "Gave you" : "Took away"} the ${role} role!`)
                 .setTimestamp()
                 .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
