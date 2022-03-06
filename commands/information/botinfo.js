@@ -25,9 +25,9 @@ module.exports = {
                 `API Latency: ${Math.round(client.ws.ping)}ms`
             )
             .addField("Version Information",
-                `[Bot Version: ${client.version}](${GitHubLink})\n` +
+                `[Bot Version: v${client.version}](${GitHubLink})\n` +
                 `[Node.js: ${process.version}](${NodeJsLink})\n` +
-                `[Discord.js: ${discord.version}](${DiscordJsLink})`
+                `[Discord.js: v${discord.version}](${DiscordJsLink})`
             )
             .addField("System Information",
                 `Platform: ${process.platform}\n` +
