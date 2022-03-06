@@ -15,7 +15,7 @@ module.exports = {
         }
 
         await message.channel.permissionOverwrites.set([{
-            id: message.guild.id,
+            id: message.guild.roles.everyone,
             null: [discord.Permissions.FLAGS.SEND_MESSAGES]
         }], `Unlocked by ${message.author.tag} (ID: ${message.author.id})`); // reason doesn't work...
 

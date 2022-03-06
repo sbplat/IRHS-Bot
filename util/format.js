@@ -28,5 +28,10 @@ module.exports.formatMSDuration = (msTime) => {
     const hours = Math.floor((msTime % ms.day) / ms.hour);
     const minutes = Math.floor((msTime % ms.hour) / ms.minute);
     const seconds = Math.floor((msTime % ms.minute) / ms.second);
-    return `${pluralStr(days, "day")}, ${pluralStr(hours, "hour")}, ${pluralStr(minutes, "minute")} and ${pluralStr(seconds, "second")}`;
+    let timeArr = [];
+    if (days) { timeArr.push(pluralStr(days, "day")); }
+    if (hours) { timeArr.push(pluralStr(hours, "hour")); }
+    if (minutes) { timeArr.push(pluralStr(minutes, "minute")); }
+    if (seconds) { timeArr.push(pluralStr(seconds, "second")); }
+    return [timeArr.slice(0, -1).join(", "), timeArr.slice(-1)[0]].join(timeArr.length <= 1 ? "" : " and ");
 };

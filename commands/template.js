@@ -1,3 +1,4 @@
+/* eslint-disable */
 const discord = require("discord.js");
 
 module.exports = {
@@ -5,13 +6,13 @@ module.exports = {
     aliases: [],
     category: "category",
     description: "description",
-    usage: "[argument 1] [argument 2 (optional)]",
+    usage: "<argument 1> [argument]",
     example: "name",
     ownerOnly: false,
-    guildOnly: true,
+    guildOnly: false,
     requiredPerms: [],
     enabled: true,
     run: async (client, message, args) => {
-        // command body
+        // command code here
     }
 };
