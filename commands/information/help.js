@@ -59,10 +59,10 @@ module.exports = {
         } else {
             let category = undefined;
 
-            if (club.has(query)) { category = "club" };
-            if (information.has(query)) { category = "information" };
-            if (moderation.has(query)) { category = "moderation" };
-            if (utility.has(query)) { category = "utility" };
+            if (club.has(query)) { category = "club"; }
+            if (information.has(query)) { category = "information"; }
+            if (moderation.has(query)) { category = "moderation"; }
+            if (utility.has(query)) { category = "utility"; }
 
             if (category) {
                 // category help page
