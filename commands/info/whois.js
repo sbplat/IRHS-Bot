@@ -17,7 +17,8 @@ module.exports = {
         let user = await getUserFromString(client, args.join(" "));
         user = user ? await getMemberFromUser(user, message.guild) : message.member;
 
-        let rolesCount = 0, roles = [];
+        let rolesCount = 0,
+            roles = [];
         user.roles.cache.forEach((role) => {
             if (role.name != "@everyone") {
                 roles.push(role);
@@ -72,8 +73,8 @@ module.exports = {
             .addField(rolesValue, roles)
             .addField("Permissions:", allowedPermissions)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-        return await message.channel.send({embeds: [embed]});
+        return await message.channel.send({ embeds: [embed] });
     }
 };

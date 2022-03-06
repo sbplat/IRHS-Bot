@@ -1,4 +1,4 @@
-const discord = require("discord.js");
+//const discord = require("discord.js");
 const { codeBlock } = require("@discordjs/builders");
 const { getUserFromString, getMemberFromUser } = require("../../util/converters.js");
 const { inputError } = require("../../util/errors.js");
@@ -29,7 +29,7 @@ module.exports = {
             }
 
             try {
-                await message.guild.members.ban(user, {reason: `Banned by ${message.author.tag} (ID: ${message.author.id})`});
+                await message.guild.members.ban(user, { reason: `Banned by ${message.author.tag} (ID: ${message.author.id})` });
                 return message.channel.send(`Successfully banned ${user.user.tag} from the server!`);
 
             } catch (err) {

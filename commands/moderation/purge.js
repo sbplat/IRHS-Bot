@@ -23,8 +23,8 @@ module.exports = {
             .setTitle("Messages deleted")
             .setDescription(`Deleted ${pluralStr(amount, "message")}!`)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-        return await message.channel.send({embeds: [embed]});
+        return await message.channel.send({ embeds: [embed] });
     }
 };

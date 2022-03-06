@@ -11,7 +11,8 @@ module.exports = {
     example: "1 6",
     enabled: true,
     run: async (client, message, args) => {
-        let lowerbound = parseInt(args[0]), upperbound = parseInt(args[1]);
+        let lowerbound = parseInt(args[0]),
+            upperbound = parseInt(args[1]);
 
         if (isNaN(lowerbound)) {
             return await inputError(client, "randomnumber", message.author, message.channel, `${insertZeroWidth(args[0])} aka <lower bound> is an invalid integer`);
@@ -26,7 +27,7 @@ module.exports = {
             .setTitle(`Random number (${lowerbound}-${upperbound}):`)
             .setDescription(`${Math.floor(Math.random() * (upperbound - lowerbound + 1) + lowerbound)}`)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
-        return await message.channel.send({embeds: [embed]});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
+        return await message.channel.send({ embeds: [embed] });
     }
 };

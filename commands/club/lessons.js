@@ -36,9 +36,9 @@ module.exports = {
                 .addField("Pygame", `Aliases: \`${[...pygame].join(", ")}\``)
                 .addField("Discord.js", `Aliases: \`${[...discordjs].join(", ")}\``)
                 .setTimestamp()
-                .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+                .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-            return await message.channel.send({embeds: [embed]});
+            return await message.channel.send({ embeds: [embed] });
 
         } else {
             // list the resources for the specific category
@@ -49,14 +49,14 @@ module.exports = {
                 .setColor("GREEN")
                 .setTitle(`${titleCase(category)} Lessons`)
                 .setTimestamp()
-                .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+                .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
             let counter = 1;
             for (const title in categoryResources) {
                 embed.addField(`${counter++}:`, `[${title}](${categoryResources[title]})`);
             }
 
-            return await message.channel.send({embeds: [embed]});
+            return await message.channel.send({ embeds: [embed] });
         }
     }
 };

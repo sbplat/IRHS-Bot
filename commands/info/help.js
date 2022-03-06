@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const { isOwner, checkPerms } = require("../../util/checks.js");
+//const { isOwner, checkPerms } = require("../../util/checks.js");
 const { inputError } = require("../../util/errors.js");
 const { argsInfo, formatUsage, formatExample, insertZeroWidth, titleCase } = require("../../util/format.js");
 
@@ -14,7 +14,8 @@ module.exports = {
     example: "ping",
     enabled: true,
     run: async (client, message, args) => {
-        let page = 1, query = "";
+        let page = 1,
+            query = "";
         // query is greedy because it's a string
         // try to parse the page # first
         if (args[0] && args[1]) {
@@ -46,9 +47,9 @@ module.exports = {
                 .addField("Moderation", "Moderation tools", true)
                 .addField("Utility", "Random utilities", true)
                 .setTimestamp()
-                .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+                .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-            return await message.channel.send({embeds: [embed]});
+            return await message.channel.send({ embeds: [embed] });
 
         } else {
             if (client.categories.has(query)) {
@@ -60,7 +61,7 @@ module.exports = {
 
                 let commandsInfo = [];
                 client.commands.forEach((command) => {
-                    if (command.category === query /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/) {
+                    if (command.category === query /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/ ) {
                         commandsInfo.push([command.name, command.description]);
                     }
                 });
@@ -77,7 +78,7 @@ module.exports = {
                     .setColor("GREEN")
                     .setTitle(`${titleCase(query)} Category`)
                     .setTimestamp()
-                    .setFooter({text: `${message.author.tag} | Page ${page}/${maxPages}`, iconURL: message.author.displayAvatarURL()});
+                    .setFooter({ text: `${message.author.tag} | Page ${page}/${maxPages}`, iconURL: message.author.displayAvatarURL() });
 
                 let description = `Run \`${client.prefix}help command\` to view the detailed help message for that command\n\n`;
                 for (let i = (page - 1) * MAX_COMMANDS_PER_PAGE; i < Math.min(page * MAX_COMMANDS_PER_PAGE, commandsInfo.length); ++i) {
@@ -86,12 +87,12 @@ module.exports = {
 
                 embed.setDescription(description);
 
-                return await message.channel.send({embeds: [embed]});
+                return await message.channel.send({ embeds: [embed] });
 
             } else {
                 const command = client.commands.get(query) || client.commands.get(client.aliases.get(query));
 
-                if (command /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/) {
+                if (command /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/ ) {
                     // specific command help page
 
                     let embed = new discord.MessageEmbed()
@@ -107,9 +108,9 @@ module.exports = {
                             `Guild Only: ${(new Boolean(command.guildOnly)).toString()}`
                         )
                         .setTimestamp()
-                        .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+                        .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-                    return await message.channel.send({embeds: [embed]});
+                    return await message.channel.send({ embeds: [embed] });
 
                 } else {
                     return await inputError(client, "help", message.author, message.channel, `${insertZeroWidth(query)} aka [category/command] is not a valid category or command`);

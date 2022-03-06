@@ -16,7 +16,7 @@ module.exports = {
             .setTitle("Lowercase:")
             .setDescription(`${string.toLowerCase()}`)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
-        return await message.channel.send({embeds: [embed]});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
+        return await message.channel.send({ embeds: [embed] });
     }
 };

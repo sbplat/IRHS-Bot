@@ -25,7 +25,7 @@ module.exports = {
         const title = `Source code for \`${command.name}\``;
         const sourceCode = command.run.toString().replaceAll("    ", "  ");
 
-        const messageChunks = await discord.Util.splitMessage(sourceCode, {maxLength: 1950, char: "\n"});
+        const messageChunks = await discord.Util.splitMessage(sourceCode, { maxLength: 1950, char: "\n" });
 
         await message.channel.send(`${title}\n${codeBlock("js", messageChunks[0])}`);
         for (let i = 1; i < messageChunks.length; ++i) {

@@ -16,7 +16,7 @@ module.exports = {
             .setTitle("Uppercase:")
             .setDescription(`${string.toUpperCase()}`)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
-        return await message.channel.send({embeds: [embed]});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
+        return await message.channel.send({ embeds: [embed] });
     }
 };

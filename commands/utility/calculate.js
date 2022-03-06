@@ -14,7 +14,12 @@ module.exports = {
     run: async (client, message, args) => {
         const expression = args.join(" ");
         let filteredExpr = expression;
-        [["\n", ""], ["\t", ""], ["x", "*"], ["**", "^"]].forEach((pair) => {
+        [
+            ["\n", ""],
+            ["\t", ""],
+            ["x", "*"],
+            ["**", "^"]
+        ].forEach((pair) => {
             filteredExpr = filteredExpr.replace(pair[0], pair[1]);
         });
 
@@ -51,7 +56,7 @@ module.exports = {
             .setTitle(`Expression: ${expression}`)
             .setDescription(`= ${response.data}`)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
-        return await message.channel.send({embeds: [embed]});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
+        return await message.channel.send({ embeds: [embed] });
     }
 };

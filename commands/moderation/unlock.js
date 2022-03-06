@@ -8,6 +8,7 @@ module.exports = {
     guildOnly: true,
     requiredPerms: ["MANAGE_CHANNELS"],
     enabled: true,
+    // eslint-disable-next-line no-unused-vars
     run: async (client, message, args) => {
         if (message.channel.permissionsFor(message.guild.id).has("SEND_MESSAGES")) {
             return await message.channel.send(`${message.author}, this channel is already unlocked!`);
@@ -23,8 +24,8 @@ module.exports = {
             .setTitle("Channel unlocked")
             .setDescription(`🔓 | ${message.channel} is now unlocked!`)
             .setTimestamp()
-            .setFooter({text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL()});
+            .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-        return await message.channel.send({embeds: [embed]});
+        return await message.channel.send({ embeds: [embed] });
     }
 };

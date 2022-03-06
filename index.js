@@ -1,5 +1,5 @@
-//require("./util/keep-alive.js")();
 const { Client, Collection } = require("discord.js");
+const { logError } = require("./util/loggers.js");
 require("dotenv").config();
 const TOKEN = process.env.TOKEN;
 
@@ -13,6 +13,7 @@ client.commands = new Collection();
 client.aliases = new Collection();
 client.events = new Collection();
 client.prefix = "-";
+// eslint-disable-next-line no-loss-of-precision
 client.owners = [396479397537906689];
 //client.owners = [];
 
@@ -29,10 +30,8 @@ client.login(TOKEN).then(() => {
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
 
-process.on("unhandledRejection", (err) => {
-    console.error(err);
-});
-
-process.on("uncaughtException", (err) => {
-    console.error(err);
+["unhandledRejection", "uncaughtException"].forEach((event) => {
+    process.on(event, (err) => {
+        logError(client, err);
+    });
 });

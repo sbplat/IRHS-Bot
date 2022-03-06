@@ -17,6 +17,6 @@ module.exports.inputError = async (client, cmdName, user, channel, errorMessage)
             `\`\`\`ERROR: ${errorMessage}!\`\`\``
         )
         .setTimestamp()
-        .setFooter({text: `${user.tag}`, iconURL: user.displayAvatarURL()});
-    return await channel.send({content: `${user}`, embeds: [embed]});
+        .setFooter({ text: `${user.tag}`, iconURL: user.displayAvatarURL() });
+    return await channel.send({ content: `${user}`, embeds: [embed] });
 };

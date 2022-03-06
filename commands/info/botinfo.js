@@ -7,6 +7,7 @@ module.exports = {
     category: "info",
     description: "Information regarding the bot",
     enabled: true,
+    // eslint-disable-next-line no-unused-vars
     run: async (client, message, args) => {
         let embed = new discord.MessageEmbed()
             .setColor("RANDOM")
@@ -21,6 +22,6 @@ module.exports = {
                 `Powered by [discord.js v${discord.version}](https://discord.js.org/)`
             );
 
-        return await message.channel.send({embeds: [embed]});
+        return await message.channel.send({ embeds: [embed] });
     }
 };

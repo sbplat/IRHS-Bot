@@ -1,4 +1,4 @@
-const discord = require("discord.js");
+//const discord = require("discord.js");
 const { codeBlock } = require("@discordjs/builders");
 const { getUserFromString, getMemberFromUser } = require("../../util/converters.js");
 const { inputError } = require("../../util/errors.js");
