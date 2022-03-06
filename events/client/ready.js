@@ -4,8 +4,8 @@ module.exports = {
     name: "ready",
     // eslint-disable-next-line no-unused-vars
     async execute(client, message) {
-        console.log(`${client.user.tag} ready!`);
+        console.log(`${client.user.tag} ready! (v${client.version})`);
         await logReady(client);
-        await client.user.setActivity(`people code | ${client.prefix}help`, { type: "WATCHING" });
+        await client.user.setActivity(`people code | ${client.prefix}help (v${client.version})`, { type: "WATCHING" });
     }
 };

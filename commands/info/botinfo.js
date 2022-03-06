@@ -13,7 +13,7 @@ module.exports = {
             .setColor("RANDOM")
             .setTitle("Bot information")
             .setDescription(
-                `**IRHS Code Bot**\n` +
+                `**IRHS Bot v${client.version}**\n` +
                 `Uptime: ${formatMSDuration(client.uptime)}\n` +
                 //`Memory Usage: ${Math.round(process.memoryUsage().heapUsed / 1024)}mb\n` +
                 `API Latency: ${Math.round(client.ws.ping)}ms\n` +

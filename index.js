@@ -8,6 +8,7 @@ const client = new Client({
     partials: ["MESSAGE", "CHANNEL"]
 });
 
+client.version = require("./package.json").version;
 client.categories = new Set();
 client.commands = new Collection();
 client.aliases = new Collection();

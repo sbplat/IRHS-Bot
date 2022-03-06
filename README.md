@@ -1,1 +1,1 @@
-# IRHS-Code-Bot
+# IRHS-Bot
