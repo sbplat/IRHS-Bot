@@ -25,6 +25,8 @@ module.exports = {
             .setTimestamp()
             .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-        return await message.channel.send({ embeds: [embed] });
+        return await message.channel.send({ embeds: [embed] }).then((msg) => {
+            setTimeout(async () => await msg.delete(), 2 * 1000);
+        });
     }
 };
