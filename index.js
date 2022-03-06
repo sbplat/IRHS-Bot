@@ -22,14 +22,15 @@ client.owners = [396479397537906689];
     await require(`./handlers/${handler}`)(client);
 });
 
+client.on("warn", (info) => console.log(info));
+client.on("error", console.error);
+client.on("rateLimit", (info) => console.log(info));
+
 client.login(TOKEN).then(() => {
     console.log("Successfully logged in!");
 }).catch((error) => {
     console.log(`Invalid TOKEN!\n${error}`);
 });
-
-client.on("warn", (info) => console.log(info));
-client.on("error", console.error);
 
 ["unhandledRejection", "uncaughtException"].forEach((event) => {
     process.on(event, (err) => {
