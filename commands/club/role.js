@@ -1,17 +1,17 @@
 const discord = require("discord.js");
-const { resources } = require("../../util/constants.js");
-const { formatUsage, titleCase } = require("../../util/format.js");
+const { formatUsage } = require("../../util/format.js");
 
 const pygame = new Set(["pg", "pygame"]);
 const discordjs = new Set(["djs", "discord", "discordjs", "discord.js"]);
 
 module.exports = {
-    name: "lessons",
-    aliases: ["lesson", "resource", "resources"],
+    name: "role",
+    aliases: ["selfrole"],
     category: "club",
-    description: "Access past club lessons",
+    description: "Get a category role",
     usage: "[category]",
     example: "pygame",
+    guildOnly: true,
     enabled: true,
     run: async (client, message, args) => {
         let category = undefined;
@@ -22,18 +22,18 @@ module.exports = {
             if (pygame.has(option)) {
                 category = "pygame";
             } else if (discordjs.has(option)) {
-                category = "discordjs";
+                category = "discord.js";
             }
         }
 
         if (!category) {
-            // main lessons page
-            // list all categories
+            // main roles page
+            // list all available roles
 
             let embed = new discord.MessageEmbed()
                 .setColor("BLUE")
-                .setTitle("Lesson Categories")
-                .setDescription(`Run \`${formatUsage(client, "lessons")}\` to view the list of available lessons in that category`)
+                .setTitle("Role Categories")
+                .setDescription(`Run \`${formatUsage(client, "role")}\` to get the role for that category`)
                 .addField("Pygame", `Aliases: \`${[...pygame].join(", ")}\``)
                 .addField("Discord.js", `Aliases: \`${[...discordjs].join(", ")}\``)
                 .setTimestamp()
@@ -42,22 +42,17 @@ module.exports = {
             return await message.channel.send({ embeds: [embed] });
 
         } else {
-            // list the resources for the specific category
-
-            const categoryResources = resources[category];
+            const role = message.member.guild.roles.cache.find((role) => role.name === category);
+            await message.member.roles.add(role, "Self role");
 
             let embed = new discord.MessageEmbed()
                 .setColor("GREEN")
-                .setTitle(`${titleCase(category)} Lessons`)
+                .setTitle(`Role added!`)
+                .setDescription(`Gave you the ${role} role!`)
                 .setTimestamp()
                 .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
-            let counter = 1;
-            for (const title in categoryResources) {
-                embed.addField(`${counter++}:`, `[${title}](${categoryResources[title]})`);
-            }
-
-            return await message.channel.send({ embeds: [embed] });
+            return await message.channel.send({ content: `${message.author}`, embeds: [embed] });
         }
     }
 };

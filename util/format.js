@@ -3,6 +3,10 @@ const { ms } = require("./constants.js");
 module.exports.argsInfo = "<> = required, [] = optional";
 
 module.exports.formatUsage = (client, command) => {
+    if (typeof(command) === "string") {
+        command = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+    }
+
     return `${client.prefix}${command.name}${command.usage ? " " + command.usage : ""}`;
 };
 
