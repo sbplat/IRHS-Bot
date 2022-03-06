@@ -33,6 +33,7 @@ module.exports = {
             let embed = new discord.MessageEmbed()
                 .setColor("BLUE")
                 .setTitle("Lesson Categories")
+                .setDescription(`Run \`${client.prefix}lessons category\` to view the list of available lessons in that category`)
                 .addField("Pygame", `Aliases: \`${[...pygame].join(", ")}\``)
                 .addField("Discord.js", `Aliases: \`${[...discordjs].join(", ")}\``)
                 .setTimestamp()

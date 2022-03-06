@@ -5,10 +5,15 @@ const { argsInfo, formatUsage, formatExample, insertZeroWidth, titleCase } = req
 
 const MAX_COMMANDS_PER_PAGE = 7;
 
+const club = new Set(["club"]);
+const information = new Set(["info", "information"]);
+const moderation = new Set(["mod", "moderation"]);
+const utility = new Set(["util", "utility"]);
+
 module.exports = {
     name: "help",
     aliases: ["h", "commands", "cmds", "list"],
-    category: "info",
+    category: "information",
     description: "Bot commands",
     usage: "[category/command] [page #]",
     example: "ping",
@@ -41,18 +46,25 @@ module.exports = {
             let embed = new discord.MessageEmbed()
                 .setColor("BLUE")
                 .setTitle("Command Categories")
-                .setDescription(`Run \`${client.prefix}help category\` to view the list of commands available in that category`)
-                .addField("Club", "Programming club", true)
-                .addField("Info", "General information", true)
-                .addField("Moderation", "Moderation tools", true)
-                .addField("Utility", "Random utilities", true)
+                .setDescription(`Run \`${client.prefix}help category\` to view the list of available commands in that category`)
+                .addField("Club", `Programming club\nAliases: \`${[...club].join(", ")}\``, true)
+                .addField("Information", `General information\nAliases: \`${[...information].join(", ")}\``, true)
+                .addField("Moderation", `Moderation tools\nAliases: \`${[...moderation].join(", ")}\``, true)
+                .addField("Utility", `Random utilities\nAliases: \`${[...utility].join(", ")}\``, true)
                 .setTimestamp()
                 .setFooter({ text: `${message.author.tag}`, iconURL: message.author.displayAvatarURL() });
 
             return await message.channel.send({ embeds: [embed] });
 
         } else {
-            if (client.categories.has(query)) {
+            let category = undefined;
+
+            if (club.has(query)) { category = "club" };
+            if (information.has(query)) { category = "information" };
+            if (moderation.has(query)) { category = "moderation" };
+            if (utility.has(query)) { category = "utility" };
+
+            if (category) {
                 // category help page
 
                 if (page < 1) {
@@ -61,7 +73,7 @@ module.exports = {
 
                 let commandsInfo = [];
                 client.commands.forEach((command) => {
-                    if (command.category === query /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/ ) {
+                    if (command.category === category /*&& (!message.guild || !command.guildOnly || isOwner(client, message.author.id) || checkPerms(client, command, message.member, message.guild))*/ ) {
                         commandsInfo.push([command.name, command.description]);
                     }
                 });
@@ -76,7 +88,7 @@ module.exports = {
 
                 let embed = new discord.MessageEmbed()
                     .setColor("GREEN")
-                    .setTitle(`${titleCase(query)} Category`)
+                    .setTitle(`${titleCase(category)} Category`)
                     .setTimestamp()
                     .setFooter({ text: `${message.author.tag} | Page ${page}/${maxPages}`, iconURL: message.author.displayAvatarURL() });
 
@@ -100,7 +112,7 @@ module.exports = {
                         .setTitle(`Help for **${titleCase(command.name)}**`)
                         .setDescription(
                             `Name: **${titleCase(command.name)}**\n` +
-                            `Aliases: ${command.aliases.join(", ") || "none"}\n` +
+                            `Aliases: \`${command.aliases.join(", ") || "none"}\`\n` +
                             `Category: ${titleCase(command.category)}\n` +
                             `Description: ${command.description}\n` +
                             `Usage: \`${formatUsage(client, command)}\` (${argsInfo})\n` +

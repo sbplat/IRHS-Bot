@@ -7,7 +7,7 @@ const { emoji } = require("../../util/constants.js");
 module.exports = {
     name: "whois",
     aliases: ["userinfo", "aboutuser"],
-    category: "info",
+    category: "information",
     description: "Information about a user (or yourself)",
     usage: "[user]",
     example: "939234240137158656",

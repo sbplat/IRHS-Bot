@@ -3,7 +3,7 @@ const discord = require("discord.js");
 module.exports = {
     name: "ping",
     aliases: ["pong"],
-    category: "info",
+    category: "information",
     description: "Get the bot's ping",
     enabled: true,
     // eslint-disable-next-line no-unused-vars

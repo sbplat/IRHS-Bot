@@ -1,14 +1,15 @@
 const discord = require("discord.js");
 const { formatMSDuration } = require("../../util/format.js");
 
+// Do not remove
 const GitHubLink = `https://github.com/sbplat/IRHS-Bot`,
     NodeJsLink = `https://nodejs.org/en/`,
     DiscordJsLink = `https://discord.js.org/#/`;
 
 module.exports = {
     name: "botinfo",
-    aliases: ["about", "information", "github"],
-    category: "info",
+    aliases: ["about", "github"],
+    category: "information",
     description: "Information regarding the bot",
     enabled: true,
     // eslint-disable-next-line no-unused-vars

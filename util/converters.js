@@ -1,7 +1,7 @@
 const ID_REGEX = new RegExp("^([0-9]{15,20})$"),
     MENTION_REGEX = new RegExp("^<@!?([0-9]{15,20})>$");
 
-module.exports.getUserFromString = async (client, string) => {
+function extractIDFromString(string) {
     if (!string) {
         return;
     }
@@ -9,7 +9,23 @@ module.exports.getUserFromString = async (client, string) => {
     const match = ID_REGEX.exec(string) || MENTION_REGEX.exec(string);
 
     if (match) {
-        return client.users.cache.get(match[1]);
+        return match[1];
+    }
+
+    return;
+}
+
+module.exports.extractIDFromString = extractIDFromString;
+
+module.exports.getUserFromString = async (client, string) => {
+    if (!string) {
+        return;
+    }
+
+    const idMatch = extractIDFromString(string);
+
+    if (idMatch) {
+        return client.users.cache.get(idMatch);
     }
 
     string = string.toLowerCase();
@@ -32,6 +48,6 @@ module.exports.getMemberFromUser = async (user, guild) => {
         return await guild.members.fetch(user);
 
     } catch (err) {
-        return undefined;
+        return;
     }
 };

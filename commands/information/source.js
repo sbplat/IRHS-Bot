@@ -6,7 +6,7 @@ const { insertZeroWidth } = require("../../util/format.js");
 module.exports = {
     name: "source",
     aliases: ["src", "sourcecode", "inspect"],
-    category: "info",
+    category: "information",
     description: "View a command's source code",
     usage: "<command>",
     example: "source",
